@@ -30,11 +30,13 @@ def regform(request):
         name2=request.POST['lname']
         e=request.POST['email']
         admno=request.POST['admissionNo']
+        phnno=request.POST['phoneno']
+        addrs=request.POST['adress']
         u=request.POST['username']
         if User.objects.filter(username=u).exists():
            return HttpResponse("username already exists..please Try another one username...")
         p=request.POST['password']
-        User.objects.create_user(first_name=name1,last_name=name2,email=e,admission_number=admno,username=u,password=p)
+        User.objects.create_user(first_name=name1,last_name=name2,email=e,admission_number=admno,username=u,password=p,addrss=addrs,phnno=phnno)
         return redirect(logboth)
     else:
         return render(request,'regform.html')
@@ -132,7 +134,8 @@ def order_bookdetials(request):
         x.save()
         return redirect(order_book)
     
-    else: 
+    else:
+      
      return redirect(order_book)
     
 def adm_view_order(request):

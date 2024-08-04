@@ -3,9 +3,11 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     admission_number=models.BigAutoField(   
-    primary_key=True,
-        
-    )
+    primary_key=True,)
+    addrss=models.CharField(max_length=200,blank=True,default=0)
+    phnno=models.IntegerField(null=False,blank=True,default=0)
+
+
     
 
 class Add_Book(models.Model):
@@ -13,8 +15,8 @@ class Add_Book(models.Model):
     Book_name=models.CharField(max_length=250,null=True,blank=True)
     Author_name=models.CharField(max_length=230,null=True,blank=True)
     Quantity=models.IntegerField(null=True)
-def __str__(self):
-   return self.Book_name
+    def __str__(self):
+         return self.Author_name
 
 class Student_Book(models.Model): 
     user=models.ForeignKey(to=User,on_delete=models.CASCADE)
@@ -26,5 +28,5 @@ class Student_Book(models.Model):
     expiry_date=models.DateField(auto_now=True)
     fine=models.IntegerField(null=False,blank=False,default=0)
     confirm=models.BooleanField(null=False,blank=False,default=0)
-def __str__(self):
-        return self.stud_name
+    def __str__(self):
+            return self.stud_name
